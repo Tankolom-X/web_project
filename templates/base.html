@@ -12,7 +12,14 @@
 <body>
 <header>
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">Наше приложение</a>
+        <a class="navbar-brand bs-light" href="#">Наше приложение</a>
+  <a href="doors"><button type="button" class="btn btn-outline-primary">двери</button></a>
+  <a href="stairs"><button type="button" class="btn btn-outline-primary">лестницы</button></a>
+  <a href="bar"><button type="button" class="btn btn-outline-primary">барное</button></a>
+  <a href="furniture"><button type="button" class="btn btn-outline-primary">мебель</button></a>
+  <a href="usual"><button type="button" class="btn btn-outline-primary">обычное</button></a>
+
+
         {% if current_user.is_authenticated %}
         <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
         {% else %}
