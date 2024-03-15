@@ -12,13 +12,32 @@
 <body>
 <header>
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand bs-light" href="#">Наше приложение</a>
-  <a href="doors"><button type="button" class="btn btn-outline-primary">двери</button></a>
-  <a href="stairs"><button type="button" class="btn btn-outline-primary">лестницы</button></a>
-  <a href="bar"><button type="button" class="btn btn-outline-primary">барное</button></a>
-  <a href="furniture"><button type="button" class="btn btn-outline-primary">мебель</button></a>
-  <a href="usual"><button type="button" class="btn btn-outline-primary">обычное</button></a>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a class="navbar-brand bs-light" href="index"><img
+                    src="static/free-icon-silhouette-12771916 (2).png"></a></li>
+            <li>
+                <div class="dropdown" style="margin-top:6px;">
+                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        Примеры работ
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item active" href="doords">Двери</a></li>
+                        <li><a class="dropdown-item" href="stairs">Лестницы</a></li>
+                        <li><a class="dropdown-item" href="bar">Барное</a></li>
+                        <li><a class="dropdown-item" href="furniture">Мебель</a></li>
+                        <li><a class="dropdown-item" href="usual">Другое</a></li>
+                    </ul>
+                </div>
+            </li>
 
+            <li><a class="btn btn-link" href="doors">
+                <button type="button" class="btn btn-outline-primary">Заказать</button>
+            </a></li>
+            <li><a class="btn btn-link" href="stairs">
+                <button type="button" class="btn btn-outline-primary">Отзывы</button>
+            </a></li>
+        </ul>
 
         {% if current_user.is_authenticated %}
         <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
@@ -29,11 +48,25 @@
         </p>
         {% endif %}
     </nav>
+
+
 </header>
 <!-- Begin page content -->
-<main role="main" class="container">
+<main role="main" class="container-fluid">
     {% block content %}
     {% endblock %}
 </main>
+
+<!-- FOOTER -->
+<footer class="container">
+    <p class="float-end"><a href="#">Back to top</a></p>
+    <p>&copy; 2013–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
 </body>
 </html>

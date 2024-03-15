@@ -25,6 +25,7 @@ def main():
 def index():
     return render_template('index.html')
 
+
 @app.route('/register', methods=['GET', 'POST'])
 def reqister():
     form = RegisterForm()
@@ -79,25 +80,31 @@ def session_test():
     return make_response(
         f"Вы пришли на эту страницу {visits_count + 1} раз")
 
+
 @app.route('/doors')
 def doors():
     return render_template('doors.html')
+
 
 @app.route('/stairs')
 def stairs():
     return render_template('stairs.html')
 
+
 @app.route('/bar')
 def bar():
     return render_template('bar.html')
+
 
 @app.route('/furniture')
 def furniture():
     return render_template('furniture.html')
 
+
 @app.route('/usual')
 def usual():
     return render_template('usual.html')
+
 
 @login_manager.user_loader
 def load_user(user_id):
