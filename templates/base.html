@@ -18,7 +18,7 @@
             <li>
                 <div class="dropdown" style="margin-top:6px;">
                     <button class="btn btn-secondary dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                            data-bs-toggle="dropdown" aria-expanded="false" style="background:#064E3B">
                         Примеры работ
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark">
@@ -32,10 +32,10 @@
             </li>
 
             <li><a class="btn btn-link" href="doors">
-                <button type="button" class="btn btn-outline-primary">Заказать</button>
+                <button type="button" class="btn btn-outline-primary" style="background:#064E3B; color:#ffffff">Заказать</button>
             </a></li>
             <li><a class="btn btn-link" href="stairs">
-                <button type="button" class="btn btn-outline-primary">Отзывы</button>
+                <button type="button" class="btn btn-outline-primary" style="background:#064E3B; color:#ffffff">Отзывы</button>
             </a></li>
         </ul>
 
@@ -43,8 +43,8 @@
         <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
         {% else %}
         <p>
-            <a class="btn btn-primary " href="/register">Зарегистрироваться</a>
-            <a class="btn btn-success" href="/login">Войти</a>
+            <a class="btn btn-primary"  style="background:#65A30D; color:#ffffff" href="/register">Зарегистрироваться</a>
+            <a class="btn btn-success" style="background:059669; color:#ffffff" href="/login">Войти</a>
         </p>
         {% endif %}
     </nav>
@@ -58,9 +58,20 @@
 </main>
 
 <!-- FOOTER -->
-<footer class="container">
-    <p class="float-end"><a href="#">Back to top</a></p>
-    <p>&copy; 2013–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+
+<footer class="container-fluid">
+    <div class="bg-dark text-secondary px-4 py-5 text-center">
+                <div class="py-1">
+                    <div class="col-lg-6 mx-auto">
+                        <p class="fs-5 mb-4">че-то в футоре</p>
+                        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                            <p class="float-end"><a href="#">Вернуться</a></p>
+                            <p>&copy; 2013–2024 ООО"Сараев" &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
