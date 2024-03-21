@@ -81,6 +81,7 @@ def session_test():
         f"Вы пришли на эту страницу {visits_count + 1} раз")
 
 
+# выпадающее меню
 @app.route('/doors')
 def doors():
     return render_template('doors.html')
@@ -104,6 +105,17 @@ def furniture():
 @app.route('/usual')
 def usual():
     return render_template('usual.html')
+
+
+# отзывы и заказы
+@app.route('/order')
+def order():
+    return render_template('order.html')
+
+
+@app.route('/reviews')
+def reviews():
+    return render_template('reviews.html')
 
 
 @login_manager.user_loader
