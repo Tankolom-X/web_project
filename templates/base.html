@@ -8,69 +8,109 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
     <title>{{title}}</title>
+    <style>
+    .top {
+  text-decoration: none;
+  padding: 10px;
+  font-family: sans-serif;
+  color: #fff;
+  background: #000;
+  border-radius: 100px;
+}
+    .page-header {
+    padding-bottom: 9px;
+    margin: 0 40px 0 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+
+    </style>
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-light bg-light">
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a class="navbar-brand bs-light" href="index"><img
-                    src="static/free-icon-silhouette-12771916 (2).png"></a></li>
-            <li>
-                <div class="dropdown" style="margin-top:6px;">
-                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false" style="background:#064E3B">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="btn-group">
+                <a class="navbar-brand bs-light" href="index"><img
+                        src="static/free-icon-woodworking-4481907 (1).png"></a>
+                <a class="btn btn-link" href="reviews">
+                    <button type="button" class="btn btn-outline-primary"
+                            style="background:#064E3B; color:#ffffff;margin-top:8px;">
+                        Отзывы
+                    </button>
+                </a>
+                <a class="btn btn-link" href="order">
+                    <button type="button" class="btn btn-outline-primary"
+                            style="background:#064E3B; color:#ffffff;margin-top:8px;">Заказать
+                    </button>
+                </a>
+                <div class="btn-group" style="margin-top:8px;">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"
+                            style="background:#064E3B;width:155px;height:36px;margin: 8px 40px 0 15px;border-radius:3px;color:white;">
                         Примеры работ
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item active" href="doords">Двери</a></li>
+                        <li><a class="dropdown-item active" href="doors">Двери</a></li>
                         <li><a class="dropdown-item" href="stairs">Лестницы</a></li>
                         <li><a class="dropdown-item" href="bar">Барное</a></li>
                         <li><a class="dropdown-item" href="furniture">Мебель</a></li>
                         <li><a class="dropdown-item" href="usual">Другое</a></li>
                     </ul>
                 </div>
-            </li>
+            </div>
+            {% if current_user.is_authenticated %}
+            <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
+            {% else %}
+            <p style="margin-top:8px;">
+                <a class="btn btn-primary" style="background:#65A30D; color:#ffffff"
+                   href="/register">Зарегистрироваться</a>
+                <a class="btn btn-success" style="background:059669; color:#ffffff" href="/login">Войти</a>
+            </p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle" style="position: absolute; bottom:0; right:0;">
 
-            <li><a class="btn btn-link" href="order">
-                <button type="button" class="btn btn-outline-primary" style="background:#064E3B; color:#ffffff">Заказать</button>
-            </a></li>
-            <li><a class="btn btn-link" href="reviews">
-                <button type="button" class="btn btn-outline-primary" style="background:#064E3B; color:#ffffff">Отзывы</button>
-            </a></li>
-        </ul>
-
-        {% if current_user.is_authenticated %}
-        <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
-        {% else %}
-        <p>
-            <a class="btn btn-primary"  style="background:#65A30D; color:#ffffff" href="/register">Зарегистрироваться</a>
-            <a class="btn btn-success" style="background:059669; color:#ffffff" href="/login">Войти</a>
-        </p>
-        {% endif %}
-    </nav>
-
+        <a href="#"><button class="btn btn-bd-primary py-2 d-flex"
+              type="button"
+              aria-expanded="false"
+              style="text-decoration: none;
+  padding: 10px;
+  font-family: sans-serif;
+  color: #fff;
+  background:  #064E3B;
+  border-radius: 100px;">
+        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
+        <span class="visually-hidden" id="bd-theme-text">▲</span>
+      </button></a>
+    </div>
 
 </header>
 <!-- Begin page content -->
-<main role="main">
+<main role="main" style="min-height: 60vh;">
     {% block content %}
     {% endblock %}
 </main>
 
 <!-- FOOTER -->
 
-<footer class="container-fluid">
+<footer class="footer mt-auto">
     <div class="bg-dark text-secondary px-4 py-5 text-center">
-                <div class="py-1">
-                    <div class="col-lg-6 mx-auto">
-                        <p class="fs-5 mb-4">че-то в футоре</p>
-                        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                            <p class="float-end"><a href="#">Вернуться</a></p>
-                            <p>&copy; 2013–2024 ООО"Сараев" &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-                        </div>
-                    </div>
+        <div class="py-1">
+            <div class="col-lg-6 mx-auto">
+                <p class="fs-5 mb-4">че-то в футоре</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <p>&copy; 2013–2024 ООО"Сараев"</p>
                 </div>
             </div>
+        </div>
+    </div>
 
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"

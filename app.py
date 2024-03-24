@@ -1,10 +1,12 @@
 import datetime
-from flask_login import LoginManager, login_user, login_required, logout_user
-from flask import Flask, render_template, redirect, session, make_response
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+from flask import Flask, render_template, redirect, session, make_response, abort, request
 from data import db_session
 from data.users import User
+from data.news import News
 from forms.user import RegisterForm
 from forms.loginform import LoginForm
+from forms.news import NewsForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -114,7 +116,79 @@ def order():
 
 @app.route('/reviews')
 def reviews():
-    return render_template('reviews.html')
+    db_sess = db_session.create_session()
+    news = db_sess.query(News).filter(News.is_private != True)
+    import locale
+    locale.setlocale(
+        category=locale.LC_ALL,
+        locale="Russian"
+    )
+    data = datetime.date.today().strftime("%B %d, %Y")
+    return render_template('reviews.html', news=news, data=data)
+
+
+@app.route('/create_feedback', methods=['GET', 'POST'])
+@login_required
+def add_news():
+    form = NewsForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        news = News()
+        news.content = form.content.data
+        news.is_private = form.is_private.data
+        current_user.news.append(news)
+        db_sess.merge(current_user)
+        db_sess.commit()
+        return redirect('/reviews')
+    return render_template('create_feedback.html', title='Добавление новости',
+                           form=form)
+
+
+@app.route('/create_feedback/<int:id>', methods=['GET', 'POST'])
+@login_required
+def edit_news(id):
+    form = NewsForm()
+    if request.method == "GET":
+        db_sess = db_session.create_session()
+        news = db_sess.query(News).filter(News.id == id,
+                                          News.user == current_user
+                                          ).first()
+        if news:
+            form.content.data = news.content
+            form.is_private.data = news.is_private
+        else:
+            abort(404)
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        news = db_sess.query(News).filter(News.id == id,
+                                          News.user == current_user
+                                          ).first()
+        if news:
+            news.content = form.content.data
+            news.is_private = form.is_private.data
+            db_sess.commit()
+            return redirect('/reviews')
+        else:
+            abort(404)
+    return render_template('create_feedback.html',
+                           title='Редактирование новости',
+                           form=form
+                           )
+
+
+@app.route('/create_feedback_delete/<int:id>', methods=['GET', 'POST'])
+@login_required
+def news_delete(id):
+    db_sess = db_session.create_session()
+    news = db_sess.query(News).filter(News.id == id,
+                                      News.user == current_user
+                                      ).first()
+    if news:
+        db_sess.delete(news)
+        db_sess.commit()
+    else:
+        abort(404)
+    return redirect('/reviews')
 
 
 @login_manager.user_loader

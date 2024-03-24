@@ -1,5 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-        <h1>Записи в блоге</h1>
+    <nav class="navbar navbar-light bg-light">
+        {% if current_user.is_authenticated %}
+        <h2>Отзывы наших клиентов</h2>
+        <p>
+            <a class="btn btn-link" href="create_feedback">
+                <button type="button" class="btn btn-outline-primary"
+                        style="background:#064E3B;color:white;">Оставить отзыв
+                </button>
+            </a></p>
+
+        {% else %}
+        <h2>Отзывы наших клиентов</h2>
+        <p>
+            <a class="btn btn-link" href="login">
+                <button type="button" class="btn btn-outline-primary"
+                        style="background:#064E3B;color:white;">Оставить отзыв
+                </button>
+            </a></p>
+        {% endif %}
+    </nav>
+    {% for item in news%}
+    <div class="col-md6 border rounded" style="margin-left:50px;margin-bottom:20px;width: 90%;background-color:#ECFDF5;">
+        <h4 style="margin:10px;">{{item.user.name}}</h4>
+        <div>
+            <h6 style="margin:10px;">{{item.content}}</h6>
+        </div>
+        <div style="margin:10px;">
+            {{data}}
+        </div>
+        {% if current_user.is_authenticated and current_user == item.user %}
+        <div>
+            <a href="/create_feedback/{{ item.id }}" class="btn" style="color:#F4A900;">
+                Изменить
+            </a>
+            <a href="/create_feedback_delete/{{ item.id }}" class="btn" style="color:red;">
+                Удалить
+            </a>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+
 {% endblock %}
