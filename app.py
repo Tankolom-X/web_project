@@ -184,6 +184,20 @@ def edit_news(id):
                                           News.user == current_user
                                           ).first()
         if news:
+            if news.image_file:
+                image_path = os.path.join(app.root_path, 'static', 'AddPicture', news.image_file)
+                if os.path.exists(image_path):
+                    os.remove(image_path)
+
+            # Загрузка и сохранение нового изображения
+            if form.picture.data:
+                picture_file = request.files['picture']
+                if picture_file:
+                    picture_fn = secure_filename(picture_file.filename)
+                    picture_path = os.path.join(app.static_folder, 'AddPicture', picture_fn)
+                    os.makedirs(os.path.dirname(picture_path), exist_ok=True)
+                    picture_file.save(picture_path)
+                    news.image_file = picture_fn
             news.content = form.content.data
             news.is_private = form.is_private.data
             db_sess.commit()
@@ -204,6 +218,9 @@ def news_delete(id):
                                       News.user == current_user
                                       ).first()
     if news:
+        image_path = os.path.join("static/AddPicture", news.image_file)
+        if os.path.exists(image_path):
+            os.remove(image_path)
         db_sess.delete(news)
         db_sess.commit()
     else:
