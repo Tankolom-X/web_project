@@ -1,6 +1,14 @@
 import datetime
+import os
+import secrets
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
+
+from PIL import Image
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from flask import Flask, render_template, redirect, session, make_response, abort, request
+from flask import Flask, render_template, redirect, session, make_response, abort, request, current_app
+from werkzeug.utils import secure_filename
+
 from data import db_session
 from data.users import User
 from data.news import News
@@ -117,14 +125,18 @@ def order():
 @app.route('/reviews')
 def reviews():
     db_sess = db_session.create_session()
-    news = db_sess.query(News).filter(News.is_private != True)
+    news = db_sess.query(News).filter(News.is_private != True).order_by(News.created_date.desc())
     import locale
     locale.setlocale(
         category=locale.LC_ALL,
-        locale="Russian"
+        locale="Russian"  # Note: do not use "de_DE" as it doesn't work
     )
-    data = datetime.date.today().strftime("%B %d, %Y")
-    return render_template('reviews.html', news=news, data=data)
+
+    return render_template('reviews.html', news=news)
+
+
+
+
 
 
 @app.route('/create_feedback', methods=['GET', 'POST'])
@@ -136,11 +148,19 @@ def add_news():
         news = News()
         news.content = form.content.data
         news.is_private = form.is_private.data
+        if form.picture.data:
+            picture_file = request.files['picture']
+            if picture_file:
+                picture_fn = secure_filename(picture_file.filename)
+                picture_path = os.path.join(app.static_folder, 'AddPicture', picture_fn)
+                os.makedirs(os.path.dirname(picture_path), exist_ok=True)
+                picture_file.save(picture_path)
+                news.image_file = picture_fn
         current_user.news.append(news)
         db_sess.merge(current_user)
         db_sess.commit()
         return redirect('/reviews')
-    return render_template('create_feedback.html', title='Добавление новости',
+    return render_template('create_feedback.html',
                            form=form)
 
 
@@ -164,6 +184,20 @@ def edit_news(id):
                                           News.user == current_user
                                           ).first()
         if news:
+            if news.image_file:
+                image_path = os.path.join(app.root_path, 'static', 'AddPicture', news.image_file)
+                if os.path.exists(image_path):
+                    os.remove(image_path)
+
+            # Загрузка и сохранение нового изображения
+            if form.picture.data:
+                picture_file = request.files['picture']
+                if picture_file:
+                    picture_fn = secure_filename(picture_file.filename)
+                    picture_path = os.path.join(app.static_folder, 'AddPicture', picture_fn)
+                    os.makedirs(os.path.dirname(picture_path), exist_ok=True)
+                    picture_file.save(picture_path)
+                    news.image_file = picture_fn
             news.content = form.content.data
             news.is_private = form.is_private.data
             db_sess.commit()
@@ -184,6 +218,9 @@ def news_delete(id):
                                       News.user == current_user
                                       ).first()
     if news:
+        image_path = os.path.join("static/AddPicture", news.image_file)
+        if os.path.exists(image_path):
+            os.remove(image_path)
         db_sess.delete(news)
         db_sess.commit()
     else:

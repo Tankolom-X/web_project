@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1 style="margin-left:20px;">Добавление отзыва</h1>
-<form action="" method="post">
+<form action="" enctype="multipart/form-data" method="post" >
     {{ form.hidden_tag() }}
     <p>
         {{ form.content(class="form-control",style="margin: 20px 0 0 20px;width:90%;height:200px;", placeholder="Введите текст") }}<br>
@@ -11,6 +11,14 @@
                 {{ error }}
             </p>
         {% endfor %}
+    </p>
+    <p>
+        {{ form.picture(class="form-control-file", style="margin: 1px 0 0 20px;") }}
+        {% if form.picture.errors %}
+            {% for error in form.picture.errors %}
+                <span class="text-danger">{{ error }}</span></br>
+            {% endfor %}
+        {% endif %}
     </p>
     <p>{{ form.is_private(style="margin-left:20px;") }} {{ form.is_private.label }}</p>
     <p>{{ form.submit(type="submit", class="btn btn-primary", style="margin: 1px 0 0 20px;") }}</p>
