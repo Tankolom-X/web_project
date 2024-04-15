@@ -148,10 +148,12 @@ def add_news():
         news = News()
         news.content = form.content.data
         news.is_private = form.is_private.data
+        import uuid
         if form.picture.data:
             picture_file = request.files['picture']
             if picture_file:
-                picture_fn = secure_filename(picture_file.filename)
+                # Генерируем уникальное имя файла
+                picture_fn = str(uuid.uuid4()) + secure_filename(picture_file.filename)
                 picture_path = os.path.join(app.static_folder, 'AddPicture', picture_fn)
                 os.makedirs(os.path.dirname(picture_path), exist_ok=True)
                 picture_file.save(picture_path)
