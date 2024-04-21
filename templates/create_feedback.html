@@ -1,27 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 style="margin-left:20px;">Добавление отзыва</h1>
-<form action="" enctype="multipart/form-data" method="post" >
-    {{ form.hidden_tag() }}
-    <p>
-        {{ form.content(class="form-control",style="margin: 20px 0 0 20px;width:90%;height:200px;", placeholder="Введите текст") }}<br>
-        {% for error in form.content.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
+<section style="padding-top: 10rem;">
+    <div class="container">
+
+        <div class="mb-7 text-center">
+            <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold">Добавление отзыва</h3>
+        </div>
+
+        <form class="mx-auto w-lg-50" action="" enctype="multipart/form-data" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.content(class="form-control",style="margin: 20px 0 0 20px;width:90%;height:200px;", placeholder="Введите текст") }}<br>
+                {% for error in form.content.errors %}
+                    <p content="alert alert-danger" role="alert">
+                        {{ error }}
+                    </p>
+                {% endfor %}
             </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.picture(class="form-control-file", style="margin: 1px 0 0 20px;") }}
-        {% if form.picture.errors %}
-            {% for error in form.picture.errors %}
-                <span class="text-danger">{{ error }}</span></br>
-            {% endfor %}
-        {% endif %}
-    </p>
-    <p>{{ form.is_private(style="margin-left:20px;") }} {{ form.is_private.label }}</p>
-    <p>{{ form.submit(type="submit", class="btn btn-primary", style="margin: 1px 0 0 20px;") }}</p>
-    {{message}}
-</form>
+            <p>
+                {{ form.picture(class="form-control-file", style="margin: 1px 0 0 20px;") }}
+                {% if form.picture.errors %}
+                    {% for error in form.picture.errors %}
+                        <span class="text-danger">{{ error }}</span></br>
+                    {% endfor %}
+                {% endif %}
+            </p>
+            <p>{{ form.is_private(style="margin-left:20px;") }} {{ form.is_private.label }}</p>
+            <p class="text-center">{{ form.submit(type="submit", class="btn btn-primary btn-lg border-0 primary-btn-shadow", style="margin: 1px 0 0 20px;") }}</p>
+            {{message}}
+        </form>
+    </div>
+</section>
 {% endblock %}

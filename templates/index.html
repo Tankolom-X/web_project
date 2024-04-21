@@ -1,176 +1,316 @@
 {% extends "base.html" %}
 
 {% block content %}
-<html lang="rus">
-<head>
-    <script src="/docs/5.3/assets/js/color-modes.js"></script>
+<section style="padding-top: 7rem;">
+        <div class="bg-holder" style="background-image:url(static/images/hero/hero-bg.svg);">
+        </div>
+        <!--/.bg-holder-->
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-    <!-- Favicons -->
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        width: 100%;
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .0);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
-
-      .bd-mode-toggle {
-        z-index: 1500;
-      }
-
-      .bd-mode-toggle .dropdown-menu .active .bi {
-        display: block !important;
-      }
-
-    </style>
-
-
-    <!-- Custom styles for this template -->
-    <link href="heroes.css" rel="stylesheet">
-</head>
-
-<body>
-
-
-<main>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="px-4 py-5 my-5 text-center" style="background-image:url('static/Безымянный.png');background-size: contain;">
-                <h1 class="display-4 fw-bold text-body-emphasis">Цех деревообработки</h1>
-                <div class="col-lg-6 mx-auto">
-                    <p class="lead mb-4">Добро пожаловать на сайт цеха деревообработки!
-                        Мы рады представить нашу компанию, специализирующуюся на производстве
-                        деревянной мебели и изделий.</p>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-5 col-lg-6 order-0 order-md-1 text-end">
+                    <img
+                        class="pt-7 pt-md-0 hero-img"
+                        src="static/images/hero-img.png"
+                        alt="hero-header"
+                    />
                 </div>
-            </div>
-
-            <div class="b-example-divider"></div>
-
-            <div class="px-4 pt-5 my-5 text-center border-bottom" style="background-image:url('static/Безымянный2.png');background-size: contain;">
-                <h1 class="display-4 fw-bold text-body-emphasis">Заказы и продукция</h1>
-                <div class="col-lg-6 mx-auto">
-                    <p class="lead mb-4">На нашем сайте вы найдете широкий ассортимент наших изделий, а также сможете
-                        заказать индивидуальное изделие по вашему эскизу.</p>
-                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-                        <a class="btn btn-link" href="order">
-                            <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3"
-                                    style="background:#064E3B;color:white;">Заказать
-                            </button>
+                <div class="col-md-7 col-lg-6 text-md-start text-center py-6">
+                    <h4 class="fw-bold text-danger mb-3">Цех деревообработки</h4>
+                    <h1 class="hero-title">Орский ДОК</h1>
+                    <h2 class="fs-6 mb-5 pb-lg-5 fw-medium">
+                        Мы рады представить нашу компанию,<br class="d-none d-xl-block"/>
+                        специализирующуюся на производстве<br class="d-none d-xl-block"/>
+                        деревянной мебели и изделий.
+                    </h2>
+                    <div class="text-center text-md-start">
+                        <a
+                            class="btn btn-primary btn-lg me-md-4 mb-3 mb-md-0 border-0 primary-btn-shadow"
+                            href="/order"
+                            role="button"
+                        >
+                            Оформить заявку
                         </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="b-example-divider"></div>
-
-            <div class="px-4 pt-5 my-5 text-center border-bottom" style="background-image:url('static/Безымянный3.png');background-size: contain;">
-                <h1 class="display-4 fw-bold text-body-emphasis">О нас</h1>
-                <div class="col-lg-6 mx-auto">
-                    <p class="lead mb-4">Мы используем только высококачественное сырье и современное оборудование, чтобы
-                        обеспечить нашим клиентам продукцию высокого уровня.</p>
-                </div>
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-                    <a class="btn btn-link" href="reviews">
-                        <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3"
-                                style="background:#064E3B;color:white;">Отзывы
-                        </button>
-                    </a>
-                </div>
-            </div>
-
-            <div class="b-example-divider"></div>
-
-            <div class="container my-5">
-                <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
-                    <div class="col-lg-7 p-3">
-                        <h1 class="display-4 fw-bold lh-1 text-body-emphasis">Будем рады сотрудничеству с вами!</h1>
-                        <p class="lead" style="margin-top:40px;">Пожалуйста, свяжитесь с нами для получения дополнительной информации.</p>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3" style="margin:10%;">
-                            <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold"
-                                    style="background:#064E3B">+12345678912
-                            </button>
+                        <div class="w-100 d-block d-md-none"></div>
+                        <a href="#" role="button" data-bs-toggle="modal" data-bs-target="#popupVideo">
+                            <span class="btn btn-danger round-btn-lg rounded-circle me-3 danger-btn-shadow">
+                                <img src="static/images/hero/play.svg" width="15" alt="paly"/>
+                            </span>
+                        </a>
+                        <span class="fw-medium">О производстве</span>
+                        <div
+                            class="modal fade"
+                            id="popupVideo"
+                            tabindex="-1"
+                            aria-labelledby="popupVideo"
+                            aria-hidden="true"
+                        >
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <iframe class="rounded" style="width:100%;max-height:500px;" height="500px"
+                                            src="https://www.youtube.com/embed/PaaunME1K-A?si=eqWh_GXBkqv9MCzb" title="YouTube video player"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen="allowfullscreen">
+                                    </iframe>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden ">
-                        <img src="static/worker (1).png" alt="#">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pt-5 pt-md-9" id="service">
+        <div class="container">
+            <div class="position-absolute z-index--1 end-0 d-none d-lg-block">
+                <img
+                    src="static/images/category/shape.svg"
+                    style="max-width: 200px"
+                    alt="service"
+                />
+            </div>
+            <div class="mb-7 text-center">
+                <h5 class="text-secondary">Продукция</h5>
+                <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold">Примеры наших работ</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 mb-6">
+                    <div class="card service-card shadow-hover rounded-3 text-center align-items-center">
+                        <div class="card-body p-xxl-5 p-4">
+                            <img src="static/images/category-1.jpg" class="img-fluid" alt=""/>
+                            <h4 class="mb-3">Двери</h4>
+                            <p class="mb-0 fw-medium">Мы изготавливаем двери любых размеров</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 mb-6">
+                    <div class="card service-card shadow-hover rounded-3 text-center align-items-center">
+                        <div class="card-body p-xxl-5 p-4">
+                            <img src="static/images/category-2.jpg" class="img-fluid" alt=""/>
+                            <h4 class="mb-3">Лестницы</h4>
+                            <p class="mb-0 fw-medium">Мы изготавливаем лестницы любых форм</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 mb-6">
+                    <div class="card service-card shadow-hover rounded-3 text-center align-items-center">
+                        <div class="card-body p-xxl-5 p-4">
+                            <img src="static/images/category-3.jpg" class="img-fluid" alt=""/>
+                            <h4 class="mb-3">Барное</h4>
+                            <p class="mb-0 fw-medium">Мы изготавливаем любую барную мебель</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 mb-6">
+                    <div class="card service-card shadow-hover rounded-3 text-center align-items-center">
+                        <div class="card-body p-xxl-5 p-4">
+                            <img src="static/images/category-4.jpg" class="img-fluid" alt=""/>
+                            <h4 class="mb-3">Мебель</h4>
+                            <p class="mb-0 fw-medium">Мы изготавливаем мебель любого дизайна</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
-    </div>
-</main>
-<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
 
-</body>
-</html>
+    </section>
+
+    <section class="pt-5" id="destination">
+        <div class="container">
+            <div class="mb-7 text-center">
+                <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold">Заказы и продукция</h3>
+                <h5 class="text-secondary">
+                    На нашем сайте вы найдете широкий ассортимент наших изделий,<br /> а также сможете
+                    заказать индивидуальное изделие по вашему эскизу.
+                </h5>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card overflow-hidden shadow">
+                        <img class="card-img-top" src="static/images/category-5.jpg" alt=""/>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card overflow-hidden shadow">
+                        <img class="card-img-top" src="static/images/category-6.jpg" alt=""/>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card overflow-hidden shadow">
+                        <img class="card-img-top" src="static/images/category-7.jpg" alt=""/>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <a
+                        class="btn btn-primary btn-lg me-md-4 mb-3 mb-md-0 border-0 primary-btn-shadow px-lg-5"
+                        href="/order"
+                        role="button"
+                >
+                    Оформить заявку
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking">
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="mb-4 text-start">
+                        <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive text-capitalize">О нас</h3>
+                    </div>
+                    <div class="d-flex align-items-start mb-5">
+                        <div class="bg-primary me-sm-4 me-3 p-3" style="border-radius: 13px"><img
+                                src="static/images/steps/selection.svg" width="22" alt="steps"/></div>
+                        <div class="flex-1">
+                            <h5 class="text-secondary fw-bold fs-0">Высококачественное сырье</h5>
+                            <p>
+                                Мы используем только высококачественное сырье и современное оборудование, чтобы
+                                обеспечить нашим клиентам продукцию высокого уровня.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start mb-5">
+                        <div class="bg-danger me-sm-4 me-3 p-3" style="border-radius: 13px"><img
+                                src="static/images/steps/water-sport.svg" width="22" alt="steps"/></div>
+                        <div class="flex-1">
+                            <h5 class="text-secondary fw-bold fs-0">Оплата</h5>
+                            <p>Удобные способы оплаты</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start mb-5">
+                        <div class="bg-info me-sm-4 me-3 p-3" style="border-radius: 13px"><img
+                                src="static/images/steps/taxi.svg" width="22" alt="steps"/></div>
+                        <div class="flex-1">
+                            <h5 class="text-secondary fw-bold fs-0">Доставка</h5>
+                            <p>Осуществляем доставку готовой продукции по городу Орску и Оренбургской области.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <img src="/static/images/image-1.jpg" class="img-fluid" alt="" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pt-5 " id="contacts" style="background-color: #fff1da">
+        <div class="container">
+            <div class="mb-7 text-center">
+                <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold">Будем рады сотрудничеству с вами!</h3>
+                <h5 class="text-secondary">
+                    Пожалуйста, свяжитесь с нами для получения дополнительной информации.
+                </h5>
+                <a
+                        class="h1"
+                        href="tel:+12345678912"
+                        role="button"
+                >+12345678912</a>
+            </div>
+            <div class="row">
+                <div class="col-6 col-md-3 mb-4">
+                    <div class="card overflow-hidden shadow">
+                        <img class="card-img-top" src="static/images/category-3.jpg" alt=""/>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-4">
+                    <div class="card overflow-hidden shadow">
+                        <img class="card-img-top" src="static/images/category-6.jpg" alt=""/>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-4">
+                    <div class="card overflow-hidden shadow">
+                        <img class="card-img-top" src="static/images/category-2.jpg" alt=""/>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-4">
+                    <div class="card overflow-hidden shadow">
+                        <img class="card-img-top" src="static/images/category-4.jpg" alt=""/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonial">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="mb-8 text-start">
+                        <h5 class="text-secondary">Отзывы </h5>
+                        <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive">Что думают о нас клиенты?</h3>
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-6">
+                    <div class="pe-7 ps-5 ps-lg-0">
+                        <div
+                            class="carousel slide carousel-fade position-static"
+                            id="testimonialIndicator"
+                            data-bs-ride="carousel"
+                        >
+                            <div class="carousel-indicators">
+                                {% for item in news %}
+                                 <button
+                                     {% if loop.index == 1 %}
+                                        class="active"
+                                     {% endif %}
+                                     aria-label="Testimonial {{ loop.index - 1 }}"
+                                    type="button"
+                                    data-bs-target="#testimonialIndicator"
+                                    data-bs-slide-to="{{ loop.index - 1 }}"
+                                    aria-current="true"
+                                ></button>
+                                {% endfor %}
+                            </div>
+                            <div class="carousel-inner">
+                                {% for item in news %}
+                                <div class="carousel-item position-relative {% if loop.index == 1 %}active{% endif %}">
+                                    <div class="card shadow" style="border-radius:10px;">
+                                        <div class="card-body p-4">
+                                            <p class="fw-medium mb-4">{{item.content}}</p>
+                                            <h5 class="text-secondary">{{item.user.name}}</h5>
+                                            <p class="fw-medium fs--1 mb-0">{{item.created_date.strftime("%B %d, %Y")}}</p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="card shadow-sm position-absolute top-0 z-index--1 mb-3 w-100 h-100"
+                                        style="border-radius:10px;transform:translate(25px, 25px)"
+                                    ></div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                            <div
+                                class="carousel-navigation d-flex flex-column flex-between-center position-absolute end-0 top-lg-50 bottom-0 translate-middle-y z-index-1 me-3 me-lg-0"
+                                style="height:60px;width:20px;"
+                            >
+                                <button
+                                    class="carousel-control-prev position-static"
+                                    type="button"
+                                    data-bs-target="#testimonialIndicator" data-bs-slide="prev"
+                                >
+                                    <img src="static/images/icons/up.svg" width="16" alt="icon"/>
+                                </button>
+                                <button
+                                    class="carousel-control-next position-static"
+                                    type="button"
+                                    data-bs-target="#testimonialIndicator"
+                                    data-bs-slide="next"
+                                >
+                                    <img src="static/images/icons/down.svg" width="16" alt="icon"/>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

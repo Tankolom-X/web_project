@@ -1,48 +1,44 @@
 {% extends "base.html" %}
-
 {% block content %}
-<style >
-  .card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
+<section style="padding-top: 10rem;">
+    <div class="container">
 
-.card {
-  width: calc(33.33% - 10px); /* Ширина карточки с учетом промежутков */
-  margin-bottom: 20px;
-  padding: 10px;
-  background-color: #f2f2f2;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-</style>
-        <div class="card-container">
-  <div class="card">
-    <h3>Карточка 1</h3>
-    <p>Содержимое карточки 1</p>
-  </div>
-  <div class="card">
-    <h3>Карточка 2</h3>
-    <p>Содержимое карточки 2</p>
-  </div>
-  <div class="card">
-    <h3>Карточка 3</h3>
-    <p>Содержимое карточки 3</p>
-  </div>
-   <div class="card">
-    <h3>Карточка 4</h3>
-    <p>Содержимое карточки 4</p>
-  </div>
-          <div class="card">
-    <h3>Карточка 5</h3>
-    <p>Содержимое карточки 5</p>
-  </div>
-          <div class="card">
-    <h3>Карточка 6</h3>
-    <p>Содержимое карточки 6</p>
-  </div>
+        <div class="mb-7 text-center">
+            <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold">Наши работы</h3>
+        </div>
 
-  <!-- Добавьте еще карточки по аналогии -->
-</div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card overflow-hidden shadow">
+                    <img class="card-img-top" src="static/images/category-5.jpg" alt=""/>
+                    <div class="card-body py-4 px-3">
+                        <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
+                            <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link" href="#!">Rome, Italty</a></h4><span class="fs-1 fw-medium">$5,42k</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card overflow-hidden shadow">
+                    <img class="card-img-top" src="static/images/category-6.jpg" alt=""/>
+                    <div class="card-body py-4 px-3">
+                        <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
+                            <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link" href="#!">Rome, Italty</a></h4><span class="fs-1 fw-medium">$5,42k</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card overflow-hidden shadow">
+                    <img class="card-img-top" src="static/images/category-7.jpg" alt=""/>
+                    <div class="card-body py-4 px-3">
+                        <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
+                            <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link" href="#!">Rome, Italty</a></h4><span class="fs-1 fw-medium">$5,42k</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
