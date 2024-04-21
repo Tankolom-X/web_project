@@ -1,123 +1,149 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-          crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>{{title}}</title>
-    <style>
-    .top {
-  text-decoration: none;
-  padding: 10px;
-  font-family: sans-serif;
-  color: #fff;
-  background: #000;
-  border-radius: 100px;
-}
-    .page-header {
-    padding-bottom: 9px;
-    margin: 0 40px 0 20px;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 
-
-
-
-    </style>
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/favicons/favicon.ico">
+    <meta name="msapplication-TileImage" content="/static/images/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+    <link href="static/css/theme.css" rel="stylesheet"/>
 </head>
+
+
 <body>
-<header>
-    <div class="container-fluid">
-        <div class="page-header">
-            <div class="btn-group">
-                <a class="navbar-brand bs-light" href="index"><img
-                        src="static/free-icon-woodworking-4481907 (1).png"></a>
-                <a class="btn btn-link" href="reviews">
-                    <button type="button" class="btn btn-outline-primary"
-                            style="background:#064E3B; color:#ffffff;margin-top:8px;">
-                        Отзывы
-                    </button>
-                </a>
-                <a class="btn btn-link" href="order">
-                    <button type="button" class="btn btn-outline-primary"
-                            style="background:#064E3B; color:#ffffff;margin-top:8px;">Заказать
-                    </button>
-                </a>
-                <div class="btn-group" style="margin-top:8px;">
-                    <button class="btn btn-outline-primary dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"
-                            style="background:#064E3B;width:155px;height:36px;margin: 8px 40px 0 15px;border-radius:3px;color:white;">
-                        Примеры работ
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item active" href="doors">Двери</a></li>
-                        <li><a class="dropdown-item" href="stairs">Лестницы</a></li>
-                        <li><a class="dropdown-item" href="bar">Барное</a></li>
-                        <li><a class="dropdown-item" href="furniture">Мебель</a></li>
-                        <li><a class="dropdown-item" href="usual">Другое</a></li>
-                    </ul>
-                </div>
+<main class="main" id="top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-5 d-block"
+         data-navbar-on-scroll="data-navbar-on-scroll"
+    >
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img class="d-none d-md-block" src="static/images/logo.png" height="63" alt="logo"/>
+                <img class="d-md-none" src="static/images/logo.png" height="45" alt="logo"/>
+            </a>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"> </span>
+            </button>
+            <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base align-items-lg-center align-items-start">
+                    <li class="nav-item px-3 px-xl-4">
+                        <a class="nav-link fw-medium" aria-current="page" href="/reviews">Отзывы</a>
+                    </li>
+                    <li class="nav-item px-3 px-xl-4">
+                        <a class="nav-link fw-medium" aria-current="page" href="/order">Заказать</a>
+                    </li>
+                    <li class="nav-item dropdown px-3 px-xl-4">
+                        <a
+                            class="nav-link fw-medium dropdown-toggle"
+                            href="#"
+                            id="navbarDropdown"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            Примеры работ
+                        </a>
+                        <ul
+                            class="dropdown-menu dropdown-menu-end border-0 shadow-lg"
+                            style="border-radius:0.3rem;"
+                            aria-labelledby="navbarDropdown"
+                        >
+                            <li><a class="dropdown-item" href="/doors">Двери</a></li>
+                            <li><a class="dropdown-item" href="/stairs">Лестницы</a></li>
+                            <li><a class="dropdown-item" href="/bar">Барное</a></li>
+                            <li><a class="dropdown-item" href="/furniture">Мебель</a></li>
+                            <li><a class="dropdown-item" href="/usual">Другое</a></li>
+                        </ul>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item px-3 px-xl-4">
+                        <a
+                            class="btn btn-outline-dark order-1 order-lg-0 fw-medium"
+                            href="/logout"
+                        >
+                            {{ current_user.name }}
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item px-3 px-xl-4">
+                        <a class="nav-link fw-medium" aria-current="page" href="/login">Войти</a>
+                    </li>
+                    <li class="nav-item px-3 px-xl-4">
+                        <a
+                            class="btn btn-outline-dark order-1 order-lg-0 fw-medium"
+                            href="/register"
+                        >
+                            Зарегистрироваться
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
-            {% if current_user.is_authenticated %}
-            <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
-            {% else %}
-            <p style="margin-top:8px;">
-                <a class="btn btn-primary" style="background:#65A30D; color:#ffffff"
-                   href="/register">Зарегистрироваться</a>
-                <a class="btn btn-success" style="background:059669; color:#ffffff" href="/login">Войти</a>
-            </p>
-            {% endif %}
         </div>
-    </div>
-    <div class="position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle" style="position: absolute; bottom:0; right:0;">
+    </nav>
 
-        <a href="#"><button class="btn btn-bd-primary py-2 d-flex"
-              type="button"
-              aria-expanded="false"
-              style="text-decoration: none;
-  padding: 10px;
-  font-family: sans-serif;
-  color: #fff;
-  background:  #064E3B;
-  border-radius: 100px;">
-        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
-        <span class="visually-hidden" id="bd-theme-text">▲</span>
-      </button></a>
-    </div>
-
-</header>
-<!-- Begin page content -->
-<main role="main" style="min-height: 60vh;">
+    <main role="main">
     {% block content %}
     {% endblock %}
-</main>
+    </main>
 
-<!-- FOOTER -->
+    <section class="pb-0 pb-lg-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-7 col-12 mb-4 mb-md-6 mb-lg-0 order-0">
+                    <a href="/"><img class="mb-4 img-fluid" src="static/images/logo.png" alt=""/></a>
+                    <p class="fs--1 text-secondary mb-0 fw-medium">
+                        Производство деревянной мебели и изделий
+                    </p>
+                </div>
 
-<footer class="footer mt-auto">
-    <div class="bg-dark text-secondary px-4 py-5 text-center">
-        <div class="py-1">
-            <div class="col-lg-6 mx-auto">
-                <p class="fs-5 mb-4">че-то в футоре</p>
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <p>&copy; 2013–2024 ООО"Сараев"</p>
+                <div class="col-lg-5 col-md-12 mb-4 mb-lg-0 order-lg-1 order-md-2">
+                    <h4 class="footer-heading-color fw-bold font-sans-serif mb-3 mb-lg-4">Наши контакты</h4>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2 fs-1 fw-medium">
+                            Телефон: <a class="link-900 text-decoration-none" href="tel:+1234567890">+1234567890</a>
+                        </li>
+                        <li class="mb-2 fs-1 fw-medium">
+                            Email: <a class="link-900 text-decoration-none" href="mailto:test@test.ru">test@test.ru</a>
+                        </li>
+                        <li class="mb-2 fs-1 fw-medium">
+                            Адрес: г. Орск, Орское шоссе 5А
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-5 col-12 mb-4 mb-md-6 mb-lg-0 order-lg-4 order-md-1">
                 </div>
             </div>
         </div>
-    </div>
 
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-        crossorigin="anonymous"></script>
+    </section>
+
+    <div class="py-5 text-center">
+        <p class="mb-0 text-secondary fs--1 fw-medium">&copy; 2013–2024 ООО"Сараев". Все права защищены</p>
+    </div>
+</main>
+
+<script src="/static/vendors/@popperjs/popper.min.js"></script>
+<script src="/static/vendors/bootstrap/bootstrap.min.js"></script>
+<script src="/static/vendors/is/is.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+<script src="/static/vendors/fontawesome/all.min.js"></script>
+<script src="static/js/theme.js"></script>
+
 </body>
 </html>

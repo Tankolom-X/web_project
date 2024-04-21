@@ -15,6 +15,7 @@ from data.news import News
 from forms.user import RegisterForm
 from forms.loginform import LoginForm
 from forms.news import NewsForm
+from forms.orderform import OrderForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -33,7 +34,9 @@ def main():
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    db_sess = db_session.create_session()
+    news = db_sess.query(News).filter(News.is_private != True).order_by(News.created_date.desc())
+    return render_template('index.html', news=news)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -117,9 +120,10 @@ def usual():
 
 
 # отзывы и заказы
-@app.route('/order')
+@app.route('/order', methods=['GET', 'POST'])
 def order():
-    return render_template('order.html')
+    form = OrderForm()
+    return render_template('order.html', form=form)
 
 
 @app.route('/reviews')
