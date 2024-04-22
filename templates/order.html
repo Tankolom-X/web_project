@@ -4,39 +4,16 @@
 <section style="padding-top: 10rem;">
     <div class="container">
 
-        <div class="mb-7 text-center">
-            <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold">Оставить заказ</h3>
-        </div>
 
         <form class="mx-auto w-lg-50" action="" enctype="multipart/form-data" method="post">
-            {{ form.hidden_tag() }}
-            <p>
-                {{ form.email.label }}<br>
-                {{ form.email(class="form-control", type="email") }}<br>
-                {% for error in form.email.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-            {% endfor %}
-            </p>
-            <p>
-                {{ form.content(class="form-control",style="margin: 20px 0 0;height:200px;", placeholder="Введите текст") }}<br>
-                {% for error in form.content.errors %}
-                    <p content="alert alert-danger" role="alert">
-                        {{ error }}
-                    </p>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.picture(class="form-control-file", style="margin: 1px 0 0 20px;") }}
-                {% if form.picture.errors %}
-                    {% for error in form.picture.errors %}
-                        <span class="text-danger">{{ error }}</span></br>
-                    {% endfor %}
-                {% endif %}
-            </p>
-            <p class="text-center">{{ form.submit(type="submit", class="btn btn-primary btn-lg border-0 primary-btn-shadow", style="margin: 1px 0 0 20px;") }}</p>
-            {{message}}
+<form method="post">
+        <label for="login">Введите контактные данные (номер телефона или @ в телеграмм):</label>
+        <input type="text" id="login" name="login">
+        <form method="post" enctype="multipart/form-data"> <br>
+        <input type="file" name="image" accept="image/*">
+        <button type="submit">Отправить</button>
+    </form>
+
         </form>
     </div>
 </section>

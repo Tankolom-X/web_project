@@ -8,4 +8,4 @@ class OrderForm(FlaskForm):
     name = StringField('Имя пользователя', validators=[DataRequired()])
     content = TextAreaField("Что вы хотите заказать?")
     picture = FileField('AddPicture', validators=[FileAllowed(['jpg', 'png'])])
-    submit = SubmitField('Оставить заявку')
+    submit = SubmitField('Отправить заказ')
