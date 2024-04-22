@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <h1>Привет, {{ username }}!</h1>
+<form method="post">
+        <label for="login">Введите контактные данные (номер телефона или @ в телеграмм):</label>
+        <input type="text" id="login" name="login">
+    <label for="text">Дополнительный комментарий к заказу:</label>
+        <input type="text" id="text" name="text">
+        <button type="submit">Отправить</button>
+    </form>
+{% endblock %}
