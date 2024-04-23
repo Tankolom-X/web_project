@@ -4,9 +4,8 @@ import secrets
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 
-from PIL import Image
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from flask import Flask, render_template, redirect, session, make_response, abort, request, current_app
+from flask import Flask, render_template, redirect, session, make_response, abort, request, current_app, flash
 from werkzeug.utils import secure_filename
 
 from data import db_session
@@ -16,6 +15,13 @@ from forms.user import RegisterForm
 from forms.loginform import LoginForm
 from forms.news import NewsForm
 from forms.orderform import OrderForm
+
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email.mime.image import MIMEImage
+from email import encoders
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -123,6 +129,32 @@ def usual():
 @app.route('/order', methods=['GET', 'POST'])
 def order():
     form = OrderForm()
+
+    if request.method == 'POST':
+        message = f"Контактные данные: {request.form['email']}\n"
+        message += f"Текст: {request.form['content']}"
+
+        msg = MIMEMultipart()
+        msg['From'] = "orderwood56@internet.ru"
+        msg['To'] = "orderwood56@internet.ru"
+        msg['Subject'] = 'Заказ'
+        msg.attach(MIMEText(message, 'plain'))
+
+
+        try:
+            server = smtplib.SMTP_SSL('smtp.mail.ru', 465)
+            server.login("orderwood56@internet.ru", 'LmXVNCnF2fgEq3b3GYxR')
+            server.sendmail("orderwood56@internet.ru", "orderwood56@internet.ru", msg.as_string())
+            print('Email sent successfully')
+            flash('Заявка отправлена')
+            return redirect('/order')
+
+        except Exception as e:
+            print('Email not sent. An error occurred:', str(e))
+
+        finally:
+            server.quit()
+
     return render_template('order.html', form=form)
 
 

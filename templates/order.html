@@ -7,12 +7,22 @@
         <div class="mb-7 text-center">
             <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold">Оставить заказ</h3>
         </div>
-
         <form class="mx-auto w-lg-50" action="" enctype="multipart/form-data" method="post">
+
+            {% with messages = get_flashed_messages() %}
+               {% if messages %}
+                  {% for message in messages %}
+                    <div class="alert alert-success mb-4 text-center" role="alert">
+                        {{ message }}
+                    </div>
+                  {% endfor %}
+               {% endif %}
+            {% endwith %}
+
             {{ form.hidden_tag() }}
             <p>
                 {{ form.email.label }}<br>
-                {{ form.email(class="form-control", type="email") }}<br>
+                {{ form.email(class="form-control", type="text") }}<br>
                 {% for error in form.email.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
@@ -27,7 +37,7 @@
                     </p>
                 {% endfor %}
             </p>
-            <p>
+            <p class="d-none">
                 {{ form.picture(class="form-control-file", style="margin: 1px 0 0 20px;") }}
                 {% if form.picture.errors %}
                     {% for error in form.picture.errors %}
