@@ -1,5 +1,6 @@
 import datetime
 import os
+import random
 import secrets
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
@@ -151,25 +152,27 @@ def order():
                 file.write('_')
         input_data = request.form['login']
     if input_data != "":
-        # Email configuration
-        sender_email = "orderwood56@internet.ru"
+        # Email configuration        sender_email = "orderwood56@internet.ru"
         receiver_email = "orderwood56@internet.ru"
-        sender_password = "s8N-MLw-rV2-6bJ"
-        subject = 'Заказ'
+        sender_password = "m3Z-DQ9-nbB-gWC"
+        sender_email = "orderwood56@internet.ru"
+        with open('files_order/file_number_of_order.txt', 'r') as file:
+            number = int(file.read().strip())
+        new_number = number + 1
+        with open('files_order/file_number_of_order.txt', 'w') as file:
+            file.write(str(new_number))
+        subject = f'Заказ №{number}'
         print(input_data)
-        if ("+79" in str(input_data)) or ("89" in str(input_data)):
-             message = f"номер заказчика/цы: {input_data}"
-        else:
-            message = f"ник в телеграме заказчика/цы: {input_data}"
+        message = f"номер заказчика/цы: {input_data}"
         msc_login_user = "orderwood56@internet.ru"
-        msc_login_pass = 'LmXVNCnF2fgEq3b3GYxR' # Пароль для приложения
+        msc_login_pass = 'y3n8H64LrmDevpT3EDbw' # Пароль для приложения
 
         msg = MIMEMultipart()
         msg['From'] = sender_email
         msg['To'] = receiver_email
         msg['Subject'] = subject
         msg.attach(MIMEText(message, 'plain'))
-        if os.path.exists("files_flag/flag.txt") and os.path.exists(os.listdir("images_email")[0]):
+        if os.path.exists("files_flag/flag.txt"):
             with open(f'images_email/{os.listdir("images_email")[0]}', 'rb') as f:
                 image = MIMEImage(f.read())
                 image.add_header('Content-Disposition', 'attachment', filename='image.jpg')
@@ -186,6 +189,14 @@ def order():
             print('Email sent successfully')
             if os.path.exists("files_flag/flag.txt"):
                 os.remove("files_flag/flag.txt")
+            if os.path.exists("images_email/image_2_email.jpg"):
+                os.remove("images_email/image_2_email.jpg")
+            if os.path.exists("images_email/image_2_email.png"):
+                os.remove("images_email/image_2_email.png")
+            if os.path.exists("images_email/image_2_email.jpeg"):
+                os.remove("images_email/image_2_email.jpeg")
+            if os.path.exists("images_email/image_2_email.raw"):
+                os.remove("images_email/image_2_email.raw")
         except Exception as e:
             print('Email not sent. An error occurred:', str(e))
         finally:
