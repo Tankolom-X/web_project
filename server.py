@@ -1,10 +1,10 @@
 import datetime
 import os
+import random
 import secrets
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 
-from PIL import Image
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from flask import Flask, render_template, redirect, session, make_response, abort, request, current_app
 from werkzeug.utils import secure_filename
@@ -16,12 +16,19 @@ from forms.user import RegisterForm
 from forms.loginform import LoginForm
 from forms.news import NewsForm
 from forms.orderform import OrderForm
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email.mime.image import MIMEImage
+from email import encoders
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(
     days=365
 )
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -122,8 +129,79 @@ def usual():
 # отзывы и заказы
 @app.route('/order', methods=['GET', 'POST'])
 def order():
-    form = OrderForm()
-    return render_template('order.html', form=form)
+    input_data = None
+    file_name_abc = ""
+    file = None
+    flag = False
+    if request.method == 'POST':
+        if 'image' not in request.files:
+            return 'Нет файла в запросе'
+        file = request.files['image']
+        if file:
+            print(file)
+            filename = file.filename
+            for i in filename:
+                if i == "." or flag:
+                    file_name_abc += i
+                    flag = True
+            save_path = os.path.join('images_email', "image_2_email" + file_name_abc)
+            if not os.path.exists('images_email'):
+                os.makedirs('images_email')
+            file.save(save_path)
+            with open("files_flag/flag.txt", 'w') as file:
+                file.write('_')
+        input_data = request.form['login']
+    if input_data != "":
+        # Email configuration        sender_email = "orderwood56@internet.ru"
+        receiver_email = "orderwood56@internet.ru"
+        sender_password = "m3Z-DQ9-nbB-gWC"
+        sender_email = "orderwood56@internet.ru"
+        with open('files_order/file_number_of_order.txt', 'r') as file:
+            number = int(file.read().strip())
+        new_number = number + 1
+        with open('files_order/file_number_of_order.txt', 'w') as file:
+            file.write(str(new_number))
+        subject = f'Заказ №{number}'
+        print(input_data)
+        message = f"номер заказчика/цы: {input_data}"
+        msc_login_user = "orderwood56@internet.ru"
+        msc_login_pass = 'y3n8H64LrmDevpT3EDbw' # Пароль для приложения
+
+        msg = MIMEMultipart()
+        msg['From'] = sender_email
+        msg['To'] = receiver_email
+        msg['Subject'] = subject
+        msg.attach(MIMEText(message, 'plain'))
+        if os.path.exists("files_flag/flag.txt"):
+            with open(f'images_email/{os.listdir("images_email")[0]}', 'rb') as f:
+                image = MIMEImage(f.read())
+                image.add_header('Content-Disposition', 'attachment', filename='image.jpg')
+                msg.attach(image)
+
+        smtp_server = 'smtp.mail.ru'
+        smtp_port = 465
+
+        try:
+            server = smtplib.SMTP_SSL('smtp.mail.ru', 465)
+            server.login(msc_login_user, msc_login_pass)
+            text = msg.as_string()
+            server.sendmail(sender_email, receiver_email, text)
+            print('Email sent successfully')
+            if os.path.exists("files_flag/flag.txt"):
+                os.remove("files_flag/flag.txt")
+            if os.path.exists("images_email/image_2_email.jpg"):
+                os.remove("images_email/image_2_email.jpg")
+            if os.path.exists("images_email/image_2_email.png"):
+                os.remove("images_email/image_2_email.png")
+            if os.path.exists("images_email/image_2_email.jpeg"):
+                os.remove("images_email/image_2_email.jpeg")
+            if os.path.exists("images_email/image_2_email.raw"):
+                os.remove("images_email/image_2_email.raw")
+        except Exception as e:
+            print('Email not sent. An error occurred:', str(e))
+        finally:
+            server.quit()
+    return render_template('order.html')
 
 
 @app.route('/reviews')
