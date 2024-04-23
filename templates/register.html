@@ -1,0 +1,56 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<section style="padding-top: 10rem;">
+    <div class="container">
+
+        <div class="mb-7 text-center">
+            <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold">Регистрация</h3>
+        </div>
+
+        <form class="mx-auto w-lg-50" action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.name.label }}<br>
+                {{ form.name(class="form-control") }}<br>
+                {% for error in form.name.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            </p>
+            <p>
+                {{ form.email.label }}<br>
+                {{ form.email(class="form-control", type="email") }}<br>
+                {% for error in form.email.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            </p>
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password(class="form-control", type="password") }}<br>
+                {% for error in form.password.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            </p>
+            <p>
+                {{ form.password_again.label }}<br>
+                {{ form.password_again(class="form-control", type="password") }}<br>
+                {% for error in form.password_again.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            </p>
+
+            <p class="text-center">{{ form.submit(type="submit", class="btn btn-primary btn-lg border-0 primary-btn-shadow", style="margin-bottom:100px;") }}</p>
+            {{message}}
+        </form>
+    </div>
+</section>
+{% endblock %}

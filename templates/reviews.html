@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+ <section style="padding-top: 10rem;">
+        <div class="container">
+
+            <div class="mb-7 text-center">
+                <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold">Отзывы</h3>
+            </div>
+            {% if current_user.is_authenticated %}
+            <a
+                class="btn btn-primary btn-sm px-5 me-md-4 mb-5 border-0 primary-btn-shadow"
+                href="/create_feedback"
+                role="button"
+            >
+                Оставить отзыв
+            </a>
+            {% endif %}
+            <div class="row row-cols-1 row-cols-lg-2 gy-5">
+                {% for item in news%}
+                <div class="position-lg-relative col">
+                    <div class="card shadow h-100" style="border-radius:10px;">
+                        <div class="card-body p-4">
+                            <p class="fw-medium mb-4">{{item.content}}</p>
+                            {% if item.image_file %}
+                            <img style="margin:10px;" src="{{ url_for('static', filename='AddPicture/' + item.image_file) }}" width="200px" height="auto">
+                            {% endif %}
+                            <h5 class="text-secondary">{{item.user.name}}</h5>
+                            <p class="fw-medium fs--1 mb-0">{{item.created_date.strftime("%B %d, %Y")}}</p>
+                            {% if current_user.is_authenticated and current_user == item.user %}
+                            <div>
+                                <a href="/create_feedback/{{ item.id }}" class="btn" style="color:#F4A900;">
+                                    Изменить
+                                </a>
+                                <a href="/create_feedback_delete/{{ item.id }}" class="btn" style="color:red;">
+                                    Удалить
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
