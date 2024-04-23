@@ -143,7 +143,7 @@ def order():
 
         try:
             server = smtplib.SMTP_SSL('smtp.mail.ru', 465)
-            server.login("orderwood56@internet.ru", 'LmXVNCnF2fgEq3b3GYxR')
+            server.login("orderwood56@internet.ru", 'y3n8H64LrmDevpT3EDbw')
             server.sendmail("orderwood56@internet.ru", "orderwood56@internet.ru", msg.as_string())
             print('Email sent successfully')
             flash('Заявка отправлена')
